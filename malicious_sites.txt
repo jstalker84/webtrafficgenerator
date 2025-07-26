@@ -1,0 +1,4 @@
+http://examplemalware.test
+http://badc2.example
+http://phishing.test
+http://command-and-control.test
