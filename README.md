@@ -1,117 +1,59 @@
-# Website Traffic Generator
+# Human-Like Web Browsing & Compromised-Host Simulator
 
-A powerful and configurable web traffic simulator designed for testing FortiGate/FortiAnalyzer and other network monitoring systems. This tool generates realistic web browsing patterns by making HTTP requests to various websites with configurable parameters.
+This project provides a Python script that automatically browses a configurable set of web sites using human-like interaction patterns and optionally generates suspicious activity to mimic a compromised endpoint.  All actions are logged in JSON format for easy ingestion by SIEM pipelines.
 
-## Overview
-
-This tool simulates real-world web traffic by:
-- Making HTTP requests to a diverse set of popular websites
-- Using realistic browsing patterns with variable delays
-- Supporting concurrent requests through multi-threading
-- Providing detailed logging of all traffic generation activities
-- Offering customizable configuration options
-
-Perfect for:
-- Testing network monitoring systems
-- Evaluating firewall configurations
-- Simulating user browsing behavior
-- Generating controlled network traffic for analysis
-- Benchmarking network performance
+---
 
 ## Features
 
-- **Realistic Traffic Simulation**: Mimics human browsing patterns with variable delays between requests
-- **Extensive Website Coverage**: Includes 90+ popular websites across various categories (search engines, social media, news, e-commerce, etc.)
-- **Concurrent Request Handling**: Multi-threaded architecture for efficient traffic generation
-- **Configurable Parameters**: Customize request delays, timeouts, concurrency, and more
-- **Custom User-Agent Support**: Rotate through different user agents for realistic browser fingerprinting
-- **Detailed Logging**: Comprehensive logging of all requests and responses
-- **Retry Mechanism**: Built-in retry strategy for handling transient network errors
-- **Command-Line Interface**: Easy-to-use CLI with various options
-- **Connectivity Testing**: Verify network connectivity before starting traffic generation
+* Headless (or visible) Chromium driven by Playwright.
+* Randomised user-agents, mouse moves, scrolling & dwell times.
+* Extensible site list (`sites.txt`) and malicious site list (`malicious_sites.txt`).
+* Simulated malicious behaviours (C2 beacon, suspicious downloads, port scan).
+* Structured logging (JSON) plus coloured console output.
+* Simple CLI flags to control run-time behaviour.
 
-## Installation
+---
 
-### Prerequisites
+## Quick Start
 
-- Python 3.6 or higher
-- pip (Python package manager)
+1. **Install Python 3.8+** and [Google Chrome](https://www.google.com/chrome/) or Chromium.
 
-### Setup
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/yourusername/website-traffic-generator.git
-   cd website-traffic-generator
-   ```
-
-2. Install required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-   If no requirements.txt is present, install the necessary packages:
-   ```bash
-   pip install requests
-   ```
-
-## Usage
-
-### Basic Usage
-
-Run the script with default settings (60 minutes duration, 10 requests per minute):
+2. **Install dependencies** (creates an isolated venv is recommended):
 
 ```bash
-python websitetraffic.py
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+# One-off Playwright browser download
+playwright install chromium
 ```
 
-### Command-Line Options
+3. **Run the simulator** for 30 minutes:
 
 ```bash
-python websitetraffic.py [options]
+python browse_sim.py --duration 30m --log-file logs/session.log
 ```
 
-Available options:
+### Useful Flags
 
-| Option | Description |
-|--------|-------------|
-| `--duration MINUTES` | Duration in minutes (default: 60) |
-| `--rpm REQUESTS` | Requests per minute (default: 10) |
-| `--config FILE` | Path to configuration file |
-| `--test` | Test connectivity only |
-| `--create-config` | Create a sample configuration file |
-
-### Examples
-
-1. Generate traffic for 30 minutes with 20 requests per minute:
-   ```bash
-   python websitetraffic.py --duration 30 --rpm 20
-   ```
-
-2. Use a custom configuration file:
-   ```bash
-   python websitetraffic.py --config my_config.json
-   ```
-
-3. Test connectivity to sample websites:
-   ```bash
-   python websitetraffic.py --test
-   ```
-
-4. Create a sample configuration file:
-   ```bash
-   python websitetraffic.py --create-config
-   ```
-
-## Configuration
-
-The tool can be configured using a JSON configuration file. Create a sample configuration with:
-
-```bash
-python websitetraffic.py --create-config
+```
+--headful            Show the browser window (default is headless)
+--sites FILE         Alternative site list (default sites.txt)
+--mal-sites FILE     Alternative malicious site list (default malicious_sites.txt)
+--compromise         Enable compromised host simulation
+--duration 1h30m     Session length (supports s/m/h suffix)
 ```
 
-This will generate a `traffic_config.json` file with the following structure:
+---
 
-```json
-{
+## Extending
+
+* **Add Sites** – Edit `sites.txt` or `malicious_sites.txt`, one URL per line.
+* **Add Behaviours** – Implement additional functions in `browse_sim.py` and register them in `SIMULATED_ATTACKS`.
+
+---
+
+## Disclaimer
+
+This project is **strictly for defensive security research** and blue-team lab environments.  Do not aim it at networks or systems you do not own or have explicit permission to test.
