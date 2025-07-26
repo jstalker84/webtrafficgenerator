@@ -24,7 +24,7 @@ Perfect for:
 
 ### Core Traffic Simulation
 - **Realistic Browsing Patterns**: Mimics human browsing behavior with variable delays between requests
-- **Extensive Website Coverage**: Includes 200+ popular websites across various categories (search engines, social media, news, e-commerce, etc.)
+- **Extensive Website Coverage**: Includes 90+ popular websites across various categories (search engines, social media, news, e-commerce, etc.)
 - **Concurrent Request Handling**: Multi-threaded architecture for efficient traffic generation
 - **Configurable Parameters**: Customize request delays, timeouts, concurrency, and more
 - **Custom User-Agent Support**: Rotate through different user agents for realistic browser fingerprinting
