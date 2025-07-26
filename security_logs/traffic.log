@@ -1,0 +1,17 @@
+2025-07-26 22:31:03,401 - traffic - INFO - Testing connectivity to sample websites...
+2025-07-26 22:31:04,225 - traffic - INFO - SESSION:d84423c5 TYPE:test GET https://www.notion.so STATUS:200 TIME:0.82s UA:Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:120.0) 
+2025-07-26 22:31:04,320 - traffic - INFO - SESSION:d84423c5 TYPE:test GET https://www.mapquest.com STATUS:200 TIME:0.09s UA:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/53
+2025-07-26 22:31:05,054 - traffic - INFO - SESSION:d84423c5 TYPE:test GET https://www.yahoo.com STATUS:200 TIME:0.73s UA:Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0
+2025-07-26 22:31:05,470 - traffic - INFO - SESSION:d84423c5 TYPE:test GET https://www.openstreetmap.org STATUS:200 TIME:0.42s UA:Mozilla/5.0 (Macintosh; Intel Mac OS X 14_1) Apple
+2025-07-26 22:31:05,634 - traffic - INFO - SESSION:d84423c5 TYPE:test GET https://www.kraken.com STATUS:403 TIME:0.16s UA:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWeb
+2025-07-26 22:31:05,803 - traffic - INFO - SESSION:d84423c5 TYPE:test GET https://www.lyft.com STATUS:200 TIME:0.17s UA:Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKi
+2025-07-26 22:31:05,848 - traffic - INFO - SESSION:d84423c5 TYPE:test GET https://www.icloud.com STATUS:200 TIME:0.04s UA:Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKi
+2025-07-26 22:31:05,886 - traffic - INFO - SESSION:d84423c5 TYPE:test GET https://www.dhs.gov STATUS:200 TIME:0.04s UA:Mozilla/5.0 (Macintosh; Intel Mac OS X 14_1) Apple
+2025-07-26 22:31:06,075 - traffic - INFO - SESSION:d84423c5 TYPE:test GET https://www.linkedin.com STATUS:200 TIME:0.19s UA:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWeb
+2025-07-26 22:31:06,156 - traffic - INFO - SESSION:d84423c5 TYPE:test GET https://www.priceline.com STATUS:403 TIME:0.08s UA:Mozilla/5.0 (X11; Linux x86_64; rv:121.0) Gecko/20
+2025-07-26 22:31:06,832 - traffic - INFO - SESSION:d84423c5 TYPE:test GET https://www.protonmail.com STATUS:200 TIME:0.68s UA:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Ap
+2025-07-26 22:31:06,896 - traffic - INFO - SESSION:d84423c5 TYPE:test GET https://www.cnet.com STATUS:200 TIME:0.06s UA:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWeb
+2025-07-26 22:31:07,185 - traffic - INFO - SESSION:d84423c5 TYPE:test GET https://news.ycombinator.com STATUS:200 TIME:0.29s UA:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWeb
+2025-07-26 22:31:07,307 - traffic - INFO - SESSION:d84423c5 TYPE:test GET https://www.chase.com STATUS:200 TIME:0.12s UA:Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0
+2025-07-26 22:31:07,344 - traffic - INFO - SESSION:d84423c5 TYPE:test GET https://www.irs.gov STATUS:200 TIME:0.04s UA:Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36
+2025-07-26 22:31:07,344 - traffic - INFO - Connectivity test: 13/15 sites accessible

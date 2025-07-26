@@ -1,0 +1,17 @@
+{
+    "request_delay_min": 0.5,
+    "request_delay_max": 8.0,
+    "timeout": 15,
+    "max_workers": 8,
+    "compromise_probability": 0.15,
+    "malicious_traffic_probability": 0.05,
+    "simulate_compromised_host": true,
+    "security_simulation_enabled": true,
+    "advanced_logging": true,
+    "log_directory": "security_logs",
+    "user_agents": [
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    ]
+}
