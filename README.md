@@ -1,117 +1,127 @@
-# Website Traffic Generator
+# Website Traffic Simulator
 
-A powerful and configurable web traffic simulator designed for testing FortiGate/FortiAnalyzer and other network monitoring systems. This tool generates realistic web browsing patterns by making HTTP requests to various websites with configurable parameters.
+A powerful and configurable web traffic simulator designed for testing **security logging**, SIEM solutions, firewalls, and other network-monitoring systems. The tool reproduces realistic human-like browsing patterns by issuing HTTP(S) requests to a wide range of popular websites with fully customisable parameters.
 
-## Overview
+---
 
-This tool simulates real-world web traffic by:
-- Making HTTP requests to a diverse set of popular websites
-- Using realistic browsing patterns with variable delays
-- Supporting concurrent requests through multi-threading
-- Providing detailed logging of all traffic generation activities
-- Offering customizable configuration options
+## ✨ Key Capabilities
 
-Perfect for:
-- Testing network monitoring systems
-- Evaluating firewall configurations
-- Simulating user browsing behavior
-- Generating controlled network traffic for analysis
-- Benchmarking network performance
+* **Realistic traffic generation** – variable delays, randomised user-agents, and concurrent sessions mimic genuine user behaviour.
+* **Extensive site list** – 90+ top websites across search, social, news, e-commerce, tech, and more.
+* **Threaded architecture** – parallel requests for high-throughput testing.
+* **Flexible CLI** – quickly adjust duration, requests-per-minute, or use a JSON config file.
+* **Connectivity testing** – verify outbound reachability before launching a full run.
+* **Rich logging** – detailed timestamped logs for easy ingestion by SIEM / log analytics platforms.
 
-## Features
+---
 
-- **Realistic Traffic Simulation**: Mimics human browsing patterns with variable delays between requests
-- **Extensive Website Coverage**: Includes 90+ popular websites across various categories (search engines, social media, news, e-commerce, etc.)
-- **Concurrent Request Handling**: Multi-threaded architecture for efficient traffic generation
-- **Configurable Parameters**: Customize request delays, timeouts, concurrency, and more
-- **Custom User-Agent Support**: Rotate through different user agents for realistic browser fingerprinting
-- **Detailed Logging**: Comprehensive logging of all requests and responses
-- **Retry Mechanism**: Built-in retry strategy for handling transient network errors
-- **Command-Line Interface**: Easy-to-use CLI with various options
-- **Connectivity Testing**: Verify network connectivity before starting traffic generation
+## 🚀 Quick Start
 
-## Installation
+### 1. Install Python requirements
 
-### Prerequisites
+```bash
+python -m pip install -r requirements.txt
+```
 
-- Python 3.6 or higher
-- pip (Python package manager)
-
-### Setup
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/yourusername/website-traffic-generator.git
-   cd website-traffic-generator
-   ```
-
-2. Install required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-   If no requirements.txt is present, install the necessary packages:
-   ```bash
-   pip install requests
-   ```
-
-## Usage
-
-### Basic Usage
-
-Run the script with default settings (60 minutes duration, 10 requests per minute):
+### 2. Generate traffic with defaults (60 min / 10 RPM)
 
 ```bash
 python websitetraffic.py
 ```
 
-### Command-Line Options
+Logs are written to `traffic_generator.log` and to the console.
 
-```bash
+---
+
+## ⚙️ Command-line Reference
+
+```text
 python websitetraffic.py [options]
 ```
 
-Available options:
+| Option                | Type | Default | Description                                    |
+|-----------------------|------|---------|------------------------------------------------|
+| `--duration MIN`      | int  | 60      | How long to run (minutes)                      |
+| `--rpm REQUESTS`      | int  | 10      | Requests per minute                            |
+| `--config FILE`       | str  | ―       | Path to a JSON configuration file              |
+| `--test`              | flag | False   | Only test connectivity to a sample of sites    |
+| `--create-config`     | flag | False   | Write a template `traffic_config.json` file    |
 
-| Option | Description |
-|--------|-------------|
-| `--duration MINUTES` | Duration in minutes (default: 60) |
-| `--rpm REQUESTS` | Requests per minute (default: 10) |
-| `--config FILE` | Path to configuration file |
-| `--test` | Test connectivity only |
-| `--create-config` | Create a sample configuration file |
+---
 
-### Examples
+## 🧑‍💻 Usage Examples
 
-1. Generate traffic for 30 minutes with 20 requests per minute:
-   ```bash
-   python websitetraffic.py --duration 30 --rpm 20
-   ```
+1. 30-minute run at 20 requests per minute:
 
-2. Use a custom configuration file:
-   ```bash
-   python websitetraffic.py --config my_config.json
-   ```
+```bash
+python websitetraffic.py --duration 30 --rpm 20
+```
 
-3. Test connectivity to sample websites:
-   ```bash
-   python websitetraffic.py --test
-   ```
+2. Use a custom configuration:
 
-4. Create a sample configuration file:
-   ```bash
-   python websitetraffic.py --create-config
-   ```
+```bash
+python websinetraffic.py --config my_config.json
+```
 
-## Configuration
+3. Connectivity test only:
 
-The tool can be configured using a JSON configuration file. Create a sample configuration with:
+```bash
+python websitetraffic.py --test
+```
+
+4. Generate a starter configuration file:
 
 ```bash
 python websitetraffic.py --create-config
 ```
 
-This will generate a `traffic_config.json` file with the following structure:
+---
+
+## 📄 Configuration File
+
+The optional JSON config allows fine-grained control without long CLI arguments. Create it yourself or with `--create-config`.
 
 ```json
 {
+  "request_delay_min": 1,
+  "request_delay_max": 5,
+  "timeout": 10,
+  "max_workers": 5,
+  "user_agents": [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+  ]
+}
+```
+
+| Key                 | Description                                           | Default |
+|---------------------|-------------------------------------------------------|---------|
+| `request_delay_min` | Minimum delay between two requests (seconds)          | 1       |
+| `request_delay_max` | Maximum delay between two requests (seconds)          | 5       |
+| `timeout`           | HTTP request timeout (seconds)                        | 10      |
+| `max_workers`       | Number of parallel worker threads                     | 5       |
+| `user_agents`       | List of user-agent strings to rotate                  | preset  |
+
+---
+
+## 📝 Logs
+
+All activity is recorded in `traffic_generator.log` (rotated each run) plus standard output. Logs include timestamps, HTTP status codes, and error details for straightforward ingestion by log analysis pipelines.
+
+---
+
+## 💡 Tips
+
+* Run from a host that can reach the Internet without captive portals or proxies.
+* Adjust `--rpm` and `--max_workers` (via config) to stress-test logging pipelines at higher throughput.
+* Combine with packet-capture tools (e.g., tcpdump, Wireshark) for deeper analysis.
+
+---
+
+## 🙌 Contributing
+
+Pull requests welcome! Please open an issue first to discuss major changes.
+
+## 📜 License
+
+This project is released under the MIT License.
